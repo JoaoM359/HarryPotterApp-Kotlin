@@ -10,14 +10,14 @@ import com.example.harrypotterapp.model.HPCharacter
 import com.example.harrypotterapp.service.RetrofitInstance
 
 class HPCharsViewModel : ViewModel() {
-    private val _posts = MutableLiveData<List<HPCharacter>>()
-    val posts: LiveData<List<HPCharacter>> = _posts
+    private val hpcharacters = MutableLiveData<List<HPCharacter>>()
+    val hpchars: LiveData<List<HPCharacter>> = hpcharacters
 
     fun fetchPosts() {
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.getChars()
-                _posts.value = response
+                hpcharacters.value = response
                 Log.i("SUCESS","on response: $response")
 
             } catch (e: Exception) {

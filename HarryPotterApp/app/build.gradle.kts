@@ -68,9 +68,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Retrofit dependency
+    // Retrofit dependency
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
 
+    // View Model
     implementation (libs.androidx.lifecycle.viewmodel.compose)
+
+    // Image Fetch
+    implementation (libs.coil.compose)
 }
