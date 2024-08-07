@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -22,18 +23,20 @@ import com.example.harrypotterapp.viewmodel.HPCharsViewModel
 @Composable
 fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel()) {
     val hpCharacters by viewModel.hpchars.observeAsState(emptyList())
+    val notFoundImageURL = "https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg"
 
-    Column(Modifier.padding(16.dp)) {
+    Column(Modifier.padding(16.dp).fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally) {
         Text("Harry Potter Characters", style = MaterialTheme.typography.bodyMedium)
         LazyColumn {
             items(hpCharacters) { hpCharacter ->
                 Box(modifier = Modifier.padding(12.dp)) {
 
-                    Column {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(hpCharacter.name, style = MaterialTheme.typography.bodyMedium)
 
                         Image(
-                            painter = rememberImagePainter(if (hpCharacter.image != "") hpCharacter.image else "https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg"),
+                            painter = rememberImagePainter(if (hpCharacter.image != "") hpCharacter.image else notFoundImageURL),
                             contentDescription = null,
                             modifier = Modifier.size(300.dp, 150.dp)
                         )
@@ -42,7 +45,6 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel()) {
                 }
             }
         }
-
     }
 
     viewModel.fetchPosts()
