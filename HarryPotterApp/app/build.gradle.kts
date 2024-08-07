@@ -77,4 +77,7 @@ dependencies {
 
     // Image Fetch
     implementation (libs.coil.compose)
+
+    // Navigation
+    implementation (libs.androidx.navigation.compose)
 }
