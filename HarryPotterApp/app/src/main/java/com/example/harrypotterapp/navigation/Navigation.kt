@@ -18,16 +18,21 @@ fun Navigation() {
             HPCharsScreen(navController = navController)
         }
         composable(
-            route = Screen.HPCharDetailScreen.route + "/{name}",
+            route = Screen.HPCharDetailScreen.route + "/{name}/{id}",
             arguments = listOf(
                 navArgument("name") {
                     type = NavType.StringType
                     defaultValue = "Philip"
                     nullable = true
+                },
+                navArgument("id") {
+                    type = NavType.StringType
+                    defaultValue = "0000"
+                    nullable = true
                 }
             )
         ) { entry ->
-            HPCharDetailScreen(name = entry.arguments?.getString("name"))
+            HPCharDetailScreen(name = entry.arguments?.getString("name"), id = entry.arguments?.getString("id"))
         }
     }
 }

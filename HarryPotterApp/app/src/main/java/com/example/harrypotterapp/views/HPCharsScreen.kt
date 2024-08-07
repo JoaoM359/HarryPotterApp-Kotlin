@@ -43,11 +43,15 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
 
                 Button(
                     onClick = {
-                        navController.navigate(Screen.HPCharDetailScreen.withArgs(hpCharacter.name))
-
+                        navController.navigate(
+                            Screen.HPCharDetailScreen.withArgs(
+                                hpCharacter.name,
+                                hpCharacter.id
+                            )
+                        )
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(Color.Gray)
+                    colors = ButtonDefaults.buttonColors(viewModel.colorForHouse(hpCharacter.house))
                 ) {
                     Box(modifier = Modifier.padding(12.dp)) {
 

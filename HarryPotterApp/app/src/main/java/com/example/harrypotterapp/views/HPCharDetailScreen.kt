@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun HPCharDetailScreen(name: String?) {
+fun HPCharDetailScreen(name: String?, id: String?) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-        Text(text = "$name world")
+        Text(text = "$name and id is $id")
     }
 }
