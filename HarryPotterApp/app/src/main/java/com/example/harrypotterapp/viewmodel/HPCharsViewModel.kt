@@ -39,7 +39,7 @@ class HPCharsViewModel : ViewModel() {
             "gryffindor" -> houseColor = Color.Red
             "ravenclaw" -> houseColor = Color.Blue
             else -> { // Note the block
-                houseColor = Color.Black
+                houseColor = Color.Gray
             }
         }
         return houseColor

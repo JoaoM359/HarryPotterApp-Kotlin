@@ -1,5 +1,6 @@
 package com.example.harrypotterapp.views
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,12 +25,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.harrypotterapp.viewmodel.HPCharsViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navController: NavController) {
     val hpCharacters by viewModel.hpchars.observeAsState(emptyList())
     val notFoundImageURL =
-        "https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg"
+        "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
 
     Column(
         Modifier
@@ -38,15 +41,19 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Harry Potter Characters", style = MaterialTheme.typography.bodyMedium)
-        LazyColumn(contentPadding = PaddingValues(100.dp)) {
+        LazyColumn(contentPadding = PaddingValues(50.dp)) {
             items(hpCharacters) { hpCharacter ->
 
                 Button(
                     onClick = {
                         navController.navigate(
                             Screen.HPCharDetailScreen.withArgs(
-                                hpCharacter.name,
-                                hpCharacter.id
+                                if (hpCharacter.name != "") hpCharacter.name else "Not Defined",
+                                if (hpCharacter.house != "") hpCharacter.house else "Not Defined",
+                                if (hpCharacter.species != "") hpCharacter.species else "Not Defined",
+                                if (hpCharacter.gender != "") hpCharacter.gender else "Not Defined",
+                                if (hpCharacter.image != "") URLEncoder.encode(hpCharacter.image, StandardCharsets.UTF_8.toString())
+                                else URLEncoder.encode(notFoundImageURL, StandardCharsets.UTF_8.toString())
                             )
                         )
                     },
@@ -68,7 +75,6 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                                 modifier = Modifier.size(300.dp, 150.dp)
                             )
                         }
-
                     }
                 }
 

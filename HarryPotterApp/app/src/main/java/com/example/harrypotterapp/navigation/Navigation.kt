@@ -18,21 +18,32 @@ fun Navigation() {
             HPCharsScreen(navController = navController)
         }
         composable(
-            route = Screen.HPCharDetailScreen.route + "/{name}/{id}",
+            route = Screen.HPCharDetailScreen.route + "/{name}/{house}/{species}/{gender}/{image}",
             arguments = listOf(
                 navArgument("name") {
                     type = NavType.StringType
-                    defaultValue = "Philip"
-                    nullable = true
                 },
-                navArgument("id") {
+                navArgument("house") {
                     type = NavType.StringType
-                    defaultValue = "0000"
-                    nullable = true
+                },
+                navArgument("species") {
+                    type = NavType.StringType
+                },
+                navArgument("gender") {
+                    type = NavType.StringType
+                },
+                navArgument("image") {
+                    type = NavType.StringType
                 }
             )
         ) { entry ->
-            HPCharDetailScreen(name = entry.arguments?.getString("name"), id = entry.arguments?.getString("id"))
+            HPCharDetailScreen(
+                name = entry.arguments?.getString("name"),
+                house = entry.arguments?.getString("house"),
+                species = entry.arguments?.getString("species"),
+                gender = entry.arguments?.getString("gender"),
+                image = entry.arguments?.getString("image")
+            )
         }
     }
 }
