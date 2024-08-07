@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -34,7 +35,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel()) {
                         Image(
                             painter = rememberImagePainter(if (hpCharacter.image != "") hpCharacter.image else "https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg"),
                             contentDescription = null,
-                            modifier = Modifier.height(150.dp)
+                            modifier = Modifier.size(300.dp, 150.dp)
                         )
                     }
 
