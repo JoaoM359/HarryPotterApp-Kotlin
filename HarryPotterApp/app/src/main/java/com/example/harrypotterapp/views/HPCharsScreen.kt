@@ -21,6 +21,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
@@ -31,16 +32,16 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navController: NavController) {
     val hpCharacters by viewModel.hpchars.observeAsState(emptyList())
-    val notFoundImageURL =
-        "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
+    val notFoundImageURL = "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
 
     Column(
         Modifier
             .padding(16.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .testTag("charsColumn"),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Harry Potter Characters", style = MaterialTheme.typography.bodyMedium)
+        Text("Harry Potter Characters", style = MaterialTheme.typography.bodyMedium, modifier = Modifier.testTag("title"))
         LazyColumn(contentPadding = PaddingValues(50.dp)) {
             items(hpCharacters) { hpCharacter ->
 
@@ -52,12 +53,20 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                                 if (hpCharacter.house != "") hpCharacter.house else "Not Defined",
                                 if (hpCharacter.species != "") hpCharacter.species else "Not Defined",
                                 if (hpCharacter.gender != "") hpCharacter.gender else "Not Defined",
-                                if (hpCharacter.image != "") URLEncoder.encode(hpCharacter.image, StandardCharsets.UTF_8.toString())
-                                else URLEncoder.encode(notFoundImageURL, StandardCharsets.UTF_8.toString())
+                                if (hpCharacter.image != "") URLEncoder.encode(
+                                    hpCharacter.image,
+                                    StandardCharsets.UTF_8.toString()
+                                )
+                                else URLEncoder.encode(
+                                    notFoundImageURL,
+                                    StandardCharsets.UTF_8.toString()
+                                )
                             )
                         )
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("${hpCharacter.name.lowercase()}Button"),
                     colors = ButtonDefaults.buttonColors(viewModel.colorForHouse(hpCharacter.house))
                 ) {
                     Box(modifier = Modifier.padding(12.dp)) {
