@@ -23,4 +23,20 @@ class ExampleUnitTest {
         assertEquals(Color(0.227f, 0.224f, 0.294f, 1.0f), viewModel.colorForHouse("ravenclaw"))
         assertEquals(Color.Gray, viewModel.colorForHouse("Not Defined"))
     }
+
+    @Test
+    fun testFavButtonColor() {
+        val mockViewModel = HPCharsViewModel()
+
+        // Initially the button color should be Black, which is the default color
+        assertEquals(mockViewModel.favButtonColor, Color.Black)
+
+        // When updating fir the first time, the color should change to Red
+        mockViewModel.updateFavButtonColor()
+        assertEquals(mockViewModel.favButtonColor, Color.Red)
+
+        //When updating again, the color should go back to Black
+        mockViewModel.updateFavButtonColor()
+        assertEquals(mockViewModel.favButtonColor, Color.Black)
+    }
 }

@@ -55,7 +55,6 @@ fun HPCharDetailScreen(
                     .testTag("charImage"),
                 painter = rememberImagePainter(image),
                 contentDescription = null
-
             )
 
             Spacer(modifier = Modifier.padding(10.dp))
