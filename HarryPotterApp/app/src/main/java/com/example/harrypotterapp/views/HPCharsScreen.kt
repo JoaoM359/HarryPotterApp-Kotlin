@@ -1,14 +1,10 @@
 package com.example.harrypotterapp.views
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,7 +20,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
@@ -56,7 +51,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
             modifier = Modifier.testTag("title")
         )
 
-        LazyColumn(contentPadding = PaddingValues(50.dp)) {
+        LazyColumn(modifier = Modifier.padding(horizontal = 75.dp)) {
             items(hpCharacters) { hpCharacter ->
 
                 Button(
@@ -82,7 +77,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                         )
                     },
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .testTag("${hpCharacter.name.lowercase()}Button"),
                     colors = ButtonDefaults.buttonColors(viewModel.colorForHouse(hpCharacter.house)),
 
@@ -103,12 +98,12 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                                     .clip(RoundedCornerShape(18.dp)),
                                 painter = rememberImagePainter(if (hpCharacter.image != "") hpCharacter.image else notFoundImageURL),
                                 contentDescription = null,
-
                                 )
                         }
                     }
                 }
 
+                Spacer(modifier = Modifier.padding(5.dp))
             }
         }
     }

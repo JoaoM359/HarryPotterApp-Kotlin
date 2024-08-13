@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -55,8 +56,7 @@ fun HPCharDetailScreen(
             Image(
                 modifier = Modifier
                     .size(400.dp, 500.dp)
-                    .clip(RoundedCornerShape(25.dp))
-                    .padding(8.dp)
+                    .padding(16.dp)
                     .testTag("charImage"),
                 painter = rememberImagePainter(image),
                 contentDescription = null
