@@ -1,6 +1,5 @@
 package com.example.harrypotterapp.views
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +31,8 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navController: NavController) {
     val hpCharacters by viewModel.hpchars.observeAsState(emptyList())
-    val notFoundImageURL = "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
+    val notFoundImageURL =
+        "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
 
     Column(
         Modifier
@@ -41,7 +41,11 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
             .testTag("charsColumn"),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Harry Potter Characters", style = MaterialTheme.typography.bodyMedium, modifier = Modifier.testTag("title"))
+        Text(
+            "Harry Potter Characters",
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.testTag("title")
+        )
         LazyColumn(contentPadding = PaddingValues(50.dp)) {
             items(hpCharacters) { hpCharacter ->
 

@@ -1,5 +1,7 @@
 package com.example.harrypotterapp
 
+import androidx.compose.ui.graphics.Color
+import com.example.harrypotterapp.viewmodel.HPCharsViewModel
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -10,8 +12,14 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testHouseColor() {
+        val viewModel = HPCharsViewModel()
+        assertEquals(Color.Red, viewModel.colorForHouse("gryffindor"))
+        assertEquals(Color.Green, viewModel.colorForHouse("slytherin"))
+        assertEquals(Color.Yellow, viewModel.colorForHouse("hufflepuff"))
+        assertEquals(Color.Blue, viewModel.colorForHouse("ravenclaw"))
+        assertEquals(Color.Gray, viewModel.colorForHouse("Not Defined"))
     }
 }
