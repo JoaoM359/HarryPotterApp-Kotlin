@@ -16,10 +16,11 @@ class ExampleUnitTest {
     @Test
     fun testHouseColor() {
         val viewModel = HPCharsViewModel()
-        assertEquals(Color.Red, viewModel.colorForHouse("gryffindor"))
-        assertEquals(Color.Green, viewModel.colorForHouse("slytherin"))
-        assertEquals(Color.Yellow, viewModel.colorForHouse("hufflepuff"))
-        assertEquals(Color.Blue, viewModel.colorForHouse("ravenclaw"))
+
+        assertEquals(Color(1f,0f,0f,0.5f), viewModel.colorForHouse("gryffindor"))
+        assertEquals(Color(0f,1f,0f,0.5f), viewModel.colorForHouse("slytherin"))
+        assertEquals(Color(1f,1f,0f,0.5f), viewModel.colorForHouse("hufflepuff"))
+        assertEquals(Color(0f,0f,1f,0.5f), viewModel.colorForHouse("ravenclaw"))
         assertEquals(Color.Gray, viewModel.colorForHouse("Not Defined"))
     }
 }

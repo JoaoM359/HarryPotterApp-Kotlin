@@ -1,14 +1,23 @@
 package com.example.harrypotterapp.views
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,20 +29,45 @@ fun HPCharDetailScreen(
     house: String?,
     species: String?,
     gender: String?,
-    image: String?
+    image: String?,
+    backgroundRed: Float?,
+    backgroundGreen: Float?,
+    backgroundBlue: Float?
 ) {
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Image(
-                painter = rememberImagePainter(image),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(300.dp, 150.dp)
-                    .testTag("charImage")
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Color(
+                    backgroundRed ?: 0.5f,
+                    backgroundGreen ?: 0.5f,
+                    backgroundBlue ?: 0.5f,
+                    0.5f
+                )
             )
+
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Image(
+                modifier = Modifier
+                    .size(400.dp, 500.dp)
+                    .clip(RoundedCornerShape(25.dp))
+                    .padding(8.dp)
+                    .testTag("charImage"),
+                painter = rememberImagePainter(image),
+                contentDescription = null
+
+            )
+
+            Spacer(modifier = Modifier.padding(10.dp))
 
             Text(
                 text = "Name",
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.testTag("nameTitle")
             )
@@ -42,8 +76,11 @@ fun HPCharDetailScreen(
                 modifier = Modifier.testTag("nameValue")
             )
 
+            Spacer(modifier = Modifier.padding(10.dp))
+
             Text(
                 text = "House",
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.testTag("houseTitle")
             )
@@ -52,8 +89,11 @@ fun HPCharDetailScreen(
                 modifier = Modifier.testTag("houseValue")
             )
 
+            Spacer(modifier = Modifier.padding(10.dp))
+
             Text(
                 text = "Species",
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.testTag("speciesTitle")
             )
@@ -62,8 +102,11 @@ fun HPCharDetailScreen(
                 modifier = Modifier.testTag("speciesValue")
             )
 
+            Spacer(modifier = Modifier.padding(10.dp))
+
             Text(
                 text = "Gender",
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.testTag("genderTitle")
             )

@@ -32,10 +32,10 @@ class HPCharsViewModel : ViewModel() {
     fun colorForHouse(house: String): Color {
 
         val houseColor = when (house.lowercase()) {
-            "slytherin" -> Color.Green
-            "hufflepuff" -> Color.Yellow
-            "gryffindor" -> Color.Red
-            "ravenclaw" -> Color.Blue
+            "slytherin" -> Color(0f,1f,0f,0.5f)
+            "hufflepuff" -> Color(1f,1f,0f,0.5f)
+            "gryffindor" -> Color(1f,0f,0f,0.5f)
+            "ravenclaw" -> Color(0f,0f,1f,0.5f)
             else -> {
                 Color.Gray
             }

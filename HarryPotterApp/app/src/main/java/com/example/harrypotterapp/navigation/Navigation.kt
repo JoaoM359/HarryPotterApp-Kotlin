@@ -18,7 +18,7 @@ fun Navigation() {
             HPCharsScreen(navController = navController)
         }
         composable(
-            route = Screen.HPCharDetailScreen.route + "/{name}/{house}/{species}/{gender}/{image}",
+            route = Screen.HPCharDetailScreen.route + "/{name}/{house}/{species}/{gender}/{image}/{backgroundRed}/{backgroundGreen}/{backgroundBlue}",
             arguments = listOf(
                 navArgument("name") {
                     type = NavType.StringType
@@ -34,6 +34,15 @@ fun Navigation() {
                 },
                 navArgument("image") {
                     type = NavType.StringType
+                },
+                navArgument("backgroundRed") {
+                    type = NavType.FloatType
+                },
+                navArgument("backgroundGreen") {
+                    type = NavType.FloatType
+                },
+                navArgument("backgroundBlue") {
+                    type = NavType.FloatType
                 }
             )
         ) { entry ->
@@ -42,7 +51,10 @@ fun Navigation() {
                 house = entry.arguments?.getString("house"),
                 species = entry.arguments?.getString("species"),
                 gender = entry.arguments?.getString("gender"),
-                image = entry.arguments?.getString("image")
+                image = entry.arguments?.getString("image"),
+                backgroundRed = entry.arguments?.getFloat("backgroundRed"),
+                backgroundGreen = entry.arguments?.getFloat("backgroundGreen"),
+                backgroundBlue = entry.arguments?.getFloat("backgroundBlue"),
             )
         }
     }
