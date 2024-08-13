@@ -35,6 +35,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
     val hpCharacters by viewModel.hpchars.observeAsState(emptyList())
     val notFoundImageURL =
         "https://www.pngkey.com/png/full/21-213224_unknown-person-icon-png-download.png"
+    val notDefinedValue = "Not Defined"
 
     Column(
         Modifier
@@ -58,10 +59,10 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                     onClick = {
                         navController.navigate(
                             Screen.HPCharDetailScreen.withArgs(
-                                if (hpCharacter.name != "") hpCharacter.name else "Not Defined",
-                                if (hpCharacter.house != "") hpCharacter.house else "Not Defined",
-                                if (hpCharacter.species != "") hpCharacter.species else "Not Defined",
-                                if (hpCharacter.gender != "") hpCharacter.gender else "Not Defined",
+                                if (hpCharacter.name != "") hpCharacter.name else notDefinedValue,
+                                if (hpCharacter.house != "") hpCharacter.house else notDefinedValue,
+                                if (hpCharacter.species != "") hpCharacter.species else notDefinedValue,
+                                if (hpCharacter.gender != "") hpCharacter.gender else notDefinedValue,
                                 if (hpCharacter.image != "") URLEncoder.encode(
                                     hpCharacter.image,
                                     StandardCharsets.UTF_8.toString()
@@ -98,7 +99,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
                                     .clip(RoundedCornerShape(18.dp)),
                                 painter = rememberImagePainter(if (hpCharacter.image != "") hpCharacter.image else notFoundImageURL),
                                 contentDescription = null,
-                                )
+                            )
                         }
                     }
                 }
