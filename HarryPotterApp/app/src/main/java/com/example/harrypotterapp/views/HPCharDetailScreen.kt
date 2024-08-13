@@ -44,7 +44,7 @@ fun HPCharDetailScreen(
                     backgroundRed ?: 0.5f,
                     backgroundGreen ?: 0.5f,
                     backgroundBlue ?: 0.5f,
-                    0.5f
+                    1f
                 )
             )
 
@@ -98,7 +98,7 @@ fun HPCharDetailScreen(
                 modifier = Modifier.testTag("speciesTitle")
             )
             Text(
-                text = "Species: $species",
+                text = "$species",
                 modifier = Modifier.testTag("speciesValue")
             )
 
