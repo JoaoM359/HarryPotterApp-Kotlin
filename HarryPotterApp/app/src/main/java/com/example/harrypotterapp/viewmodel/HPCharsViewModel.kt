@@ -16,8 +16,9 @@ import kotlinx.coroutines.launch
 
 class HPCharsViewModel : ViewModel() {
     private val hpcharacters = MutableLiveData<List<HPCharacter>>()
-    val hpchars: LiveData<List<HPCharacter>> = hpcharacters
-    var favButtonColor by mutableStateOf(Color.Black)
+    var hpchars: LiveData<List<HPCharacter>> = hpcharacters
+
+    val houses = arrayOf("gryffindor", "slytherin", "hufflepuff", "ravenclaw", "")
 
     fun fetchPosts() {
         viewModelScope.launch {
@@ -46,11 +47,15 @@ class HPCharsViewModel : ViewModel() {
         return houseColor
     }
 
-    fun updateFavButtonColor() {
-        if (this.favButtonColor == Color.Black) {
-            this.favButtonColor = Color.Red
-        } else {
-            this.favButtonColor = Color.Black
+    fun updateFavButtonColor(charId: String) {
+        this.hpchars.value?.find { hp -> hp.id == charId }?.isFavorite =
+            this.hpchars.value?.find { hp -> hp.id == charId }?.isFavorite == false
+
+    }
+
+    fun updateCharsByHouse(houseName: String) {
+        this.hpcharacters.value = this.hpcharacters.value?.filter {
+            it.house.lowercase() == houseName
         }
     }
 }

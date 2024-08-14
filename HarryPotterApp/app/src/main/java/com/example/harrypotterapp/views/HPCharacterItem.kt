@@ -80,11 +80,13 @@ fun HPCharacterItem(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
+
                 Spacer(modifier = Modifier.padding(4.dp))
+
                 Button(
-                    onClick = { viewModel.updateFavButtonColor() },
+                    onClick = { viewModel.updateFavButtonColor(hpCharacter.id) },
                     modifier = Modifier.size(25.dp),
-                    colors = ButtonDefaults.buttonColors(viewModel.favButtonColor)
+                    colors = ButtonDefaults.buttonColors(if (hpCharacter.isFavorite) Color.Red else Color.Black)
                 ) {
 
                 }

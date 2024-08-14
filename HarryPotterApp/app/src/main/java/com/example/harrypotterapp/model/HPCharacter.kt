@@ -6,5 +6,6 @@ data class HPCharacter(
     var house: String,
     var species: String,
     var gender: String,
-    var image: String
+    var image: String,
+    var isFavorite: Boolean = false
 )
