@@ -47,6 +47,7 @@ fun HPCharsScreen(viewModel: HPCharsViewModel = HPCharsViewModel(), navControlle
             fontWeight = FontWeight.Bold,
             modifier = Modifier.testTag("title")
         )
+        //dgd
         Row(
             modifier = Modifier
                 .fillMaxWidth()
